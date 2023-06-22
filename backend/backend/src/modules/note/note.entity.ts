@@ -1,24 +1,59 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
+import {
+	BaseEntity,
+	Column,
+	CreateDateColumn,
+	Entity,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+	ManyToOne,
+	JoinColumn,
+} from 'typeorm';
+import { User } from '../user/user.entity';
 
-export class Note {
-  @ApiProperty()
-  id: number;
+@Entity('notes')
+export class Note extends BaseEntity {
+	@ApiProperty()
+	@PrimaryGeneratedColumn('increment')
+	id: number;
 
-  @ApiProperty()
-  title: string;
+	@ApiProperty()
+	@Column({ 
+		name: 'title', 
+		type: 'varchar', 
+		nullable: false, 
+		unique: true 
+	})
+	title: string;
 
-  @ApiProperty()
-  content: string;
+	@ApiProperty()
+	@Column({ 
+		name: 'content', 
+		type: 'text', 
+		nullable: false, 
+		unique: false 
+	})
+	content: string;
 
-  @ApiProperty()
-  userId: number;
+	// Relation
+	@ApiProperty({
+		type: () => User
+	})
+	@ManyToOne(() => User, user => user.notes)
+	@JoinColumn({ 
+		name: 'user_id' 
+	})
+	user: User;
 
-  @ApiProperty()
-  createdAt: Date;
+	@ApiProperty()
+	@CreateDateColumn({ name: 'created_at' })
+	createdAt: Date;
 
-  @ApiProperty()
-  updatedAt: Date;
+	@ApiProperty()
+	@UpdateDateColumn({ name: 'updated_at' })
+	updatedAt: Date;
 
-  @ApiProperty()
-  deleted: boolean;
+	@ApiProperty()
+	@Column({ name: 'deleted', type: 'boolean', default: false })
+	deleted: boolean;
 }

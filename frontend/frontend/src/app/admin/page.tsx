@@ -1,35 +1,18 @@
-"use client";
+import Link from "next/link";
 
-import { useAuth } from "@/auth/useAuth";
-import { useEffect } from "react";
-
-const PrivatePage = () => {
-  const { isAuth, login, logout, user, userId, token } = useAuth();
-
-  useEffect(() => {
-    if (user && userId && token) {
-      console.log({ user });
-      console.log({ userId });
-      console.log({ token });
-    }
-  }, [user, userId, token]);
-
+const AdminDashboard = () => {
   return (
     <>
-      <h2>Ruta privada</h2>
-      {isAuth ? (
-        <>
-          <p>Usuario autenticado 😃 (({user.email}))</p>
-          <button onClick={logout}>SALIR</button>
-        </>
-      ) : (
-        <>
-          <p>Usuario no autenticado 😡</p>
-          <button onClick={login}>INICIAR SESIÓN</button>
-        </>
-      )}
+      <br />
+      <h1 className="text-center">{"[[ AdminDashboard ]]"}</h1>
+      <div className="flex flex-col flex-nowrap justify-center">
+        <hr className="m-auto w-80" />
+      </div>
+      <Link href="/" className="ml-5 text-blue-500">
+        {">>"} Volver ◀️
+      </Link>
     </>
   );
 };
 
-export default PrivatePage;
+export default AdminDashboard;

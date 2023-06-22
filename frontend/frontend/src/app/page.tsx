@@ -1,15 +1,18 @@
 import Link from "next/link";
-import RootLayout from "./layout";
 
-const IndexPage = () => {
+const Home = () => {
   return (
     <main>
-      <h1 className="text-large">Ruta públia</h1>
-      <Link href="/admin" className="text-blue-500">
-        IR A TODO APP
+      <br />
+      <h1 className="text-center">NextJS Template</h1>
+      <div className="flex flex-col flex-nowrap justify-center">
+        <hr className="m-auto w-80" />
+      </div>
+      <Link href="/admin" className="ml-5 text-blue-500">
+        {">>"} AdminDashboard ⚙️
       </Link>
     </main>
   );
 };
 
-export default IndexPage;
+export default Home;

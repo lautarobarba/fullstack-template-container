@@ -1,27 +1,26 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { Prisma } from "@prisma/client";
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateNoteDto {
-  @ApiProperty()
-  data: Prisma.TaskCreateInput;
+	@ApiProperty()
+	title: string;
 
-  //   @ApiProperty()
-  //   content: string;
+	@ApiProperty()
+	content: string;
 
-  //   @ApiProperty()
-  //   userId: number;
+	@ApiProperty()
+	userId: number;
 }
 
 export class UpdateNoteDto {
-  @ApiProperty()
-  id: number;
+	@ApiProperty()
+	id: number;
 
-  @ApiPropertyOptional()
-  title?: string;
+	@ApiPropertyOptional()
+	title?: string;
 
-  @ApiPropertyOptional()
-  content?: string;
+	@ApiPropertyOptional()
+	content?: string;
 
-  @ApiPropertyOptional()
-  userId?: number;
+	@ApiPropertyOptional()
+	userId?: number;
 }
