@@ -1,11 +1,34 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { Brand } from "./elements/Brand";
 import { EnterButton } from "./elements/EnterButton";
+import { LangContext } from "@/providers/LanguageProvider";
+import { Dictionary } from "@/utils/Dictionary";
 
 export const PublicNavbar = () => {
   const [expandNavbar, setExpandNavbar] = useState<boolean>(false);
+
+  const { lang } = useContext(LangContext);
+  const getDictionary = (lang: keyof Dictionary) => {
+    const dictionaries: Dictionary = {
+      es: {
+        home: "Inicio",
+        us: "Nosotros",
+        services: "Servicios",
+        contact: "Contacto",
+      },
+      en: {
+        home: "Home",
+        us: "Us",
+        services: "Services",
+        contact: "Contact",
+      },
+    };
+    return dictionaries[lang];
+  };
+  const dict = getDictionary(lang);
+
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -44,7 +67,7 @@ export const PublicNavbar = () => {
                 href="/#inicio"
                 className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
               >
-                Inicio
+                {dict.home}
               </Link>
             </li>
             <li className="flex items-center">
@@ -52,7 +75,7 @@ export const PublicNavbar = () => {
                 href="/#nosotros"
                 className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                Nosotros
+                {dict.us}
               </Link>
             </li>
             <li className="flex items-center">
@@ -60,7 +83,7 @@ export const PublicNavbar = () => {
                 href="/#servicios"
                 className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                Servicios
+                {dict.services}
               </Link>
             </li>
             <li className="flex items-center">
@@ -68,7 +91,7 @@ export const PublicNavbar = () => {
                 href="/#contacto"
                 className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                Contacto
+                {dict.contact}
               </Link>
             </li>
             <li className="flex items-center">

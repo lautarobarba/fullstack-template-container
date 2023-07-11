@@ -1,5 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { LanguageProvider } from "@/providers/LanguageProvider";
+import { LoadingPageWrapper } from "@/utils/LoadingPageWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ThemeProvider>
+          <LanguageProvider>
+            <LoadingPageWrapper>{children}</LoadingPageWrapper>
+          </LanguageProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

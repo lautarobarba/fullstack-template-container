@@ -1,3 +1,5 @@
+import { ChangeLanguageButton } from "@/components/ChangeLanguageButton";
+import { ToggleThemeButton } from "@/components/ToggleThemeButton";
 import { PrivateNavbar } from "@/components/navbar/PrivateNavbar";
 import { PublicNavbar } from "@/components/navbar/PublicNavbar";
 import Link from "next/link";
@@ -6,6 +8,17 @@ const Home = () => {
   return (
     <main>
       <PublicNavbar />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      {/* <p>AAA</p> */}
+      <ToggleThemeButton />
+      <ChangeLanguageButton />
+      {/* <p className="bg-cyan-500 text-black dark:bg-cyan-950 dark:text-white">
+        THEME
+      </p> */}
       {/* <PrivateNavbar /> */}
       {/* <br />
       <h1 className="text-center">NextJS Template</h1>
