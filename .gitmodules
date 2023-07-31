@@ -4,3 +4,6 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/lautarobarba/nestjs-backend-container
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/lautarobarba/nextjs-frontend-container

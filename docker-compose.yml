@@ -58,27 +58,25 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
 
-  # frontend:
-  #   container_name: frontend
-  #   image: frontend:1.0.0
-  #   build:
-  #     context: .
-  #     target: base
-  #     dockerfile: ./frontend/Dockerfile
-  #   command: bash /start.sh
-  #   # depends_on:
-  #   #   - backend
-  #   restart: always
-  #   env_file: .env
-  #   environment:
-  #     - PORT=${FRONT_PORT}
-  #   ports:
-  #     - ${FRONT_PORT}:${FRONT_PORT}
-  #   volumes:
-  #     - ./frontend/frontend:/app
-  #     - ./frontend/start.sh:/start.sh
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
+  frontend:
+    container_name: frontend
+    image: frontend:1.0.0
+    build:
+      context: .
+      target: base
+      dockerfile: ./frontend/Dockerfile
+    command: bash /start.sh
+    restart: always
+    env_file: .env
+    environment:
+      - PORT=${FRONT_PORT}
+    ports:
+      - ${FRONT_PORT}:${FRONT_PORT}
+    volumes:
+      - ./frontend/frontend:/app
+      - ./frontend/start.sh:/start.sh
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   # rproxy:
   #   container_name: rproxy
