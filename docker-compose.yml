@@ -78,27 +78,27 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
 
-  # rproxy:
-  #   container_name: rproxy
-  #   image: rproxy:1.0.0
-  #   build:
-  #     context: .
-  #     target: base
-  #     dockerfile: ./rproxy/Dockerfile
-  #   command: bash /start.sh
-  #   depends_on:
-  #     - backend
-  #     - frontend
-  #   env_file: .env
-  #   restart: always
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   volumes:
-  #     - ./rproxy/start.sh:/start.sh
-  #     - ./rproxy/nginx.conf:/etc/nginx/sites-available/default
-  #     - ./rproxy/nginx/letsencrypt:/etc/letsencrypt
-  #     # Descomentar para guardar el log en el host
-  #     # - ./rproxy/nginx/log:/var/log/nginx
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
+  rproxy:
+    container_name: rproxy
+    image: rproxy:1.0.0
+    build:
+      context: .
+      target: base
+      dockerfile: ./rproxy/Dockerfile
+    command: bash /start.sh
+    depends_on:
+      - backend
+      - frontend
+    env_file: .env
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./rproxy/start.sh:/start.sh
+      - ./rproxy/nginx.conf:/etc/nginx/sites-available/default
+      - ./rproxy/nginx/letsencrypt:/etc/letsencrypt
+      # Descomentar para guardar el log en el host
+      # - ./rproxy/nginx/log:/var/log/nginx
+    extra_hosts:
+      - host.docker.internal:host-gateway
