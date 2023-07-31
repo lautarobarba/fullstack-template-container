@@ -23,40 +23,40 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
 
-  # redis:
-  #   container_name: redis
-  #   image: "redis:alpine"
-  #   restart: always
+  redis:
+    container_name: redis
+    image: "redis:alpine"
+    restart: always
 
-  # backend:
-  #   container_name: backend
-  #   image: backend:1.0.0
-  #   build:
-  #     context: .
-  #     target: base
-  #     dockerfile: ./backend/Dockerfile
-  #   command: bash /start.sh
-  #   depends_on:
-  #     - database
-  #     - redis
-  #   restart: always
-  #   env_file: .env
-  #   environment:
-  #     # Configuracion DB
-  #     - DB_HOST=host.docker.internal
-  #     - DB_USER=${DB_USER}
-  #     - DB_PASSWORD=${DB_PASSWORD}
-  #     - DB_NAME=${DB_NAME}
-  #     - DB_PORT=${DB_PORT}
-  #   ports:
-  #     - ${BACK_PORT}:3000
-  #   volumes:
-  #     - ./backend/backend:/app
-  #     - ./backend/start.sh:/start.sh
-  #   links:
-  #     - redis
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
+  backend:
+    container_name: backend
+    image: backend:1.0.0
+    build:
+      context: .
+      target: base
+      dockerfile: ./backend/Dockerfile
+    command: bash /start.sh
+    depends_on:
+      - database
+      - redis
+    restart: always
+    env_file: .env
+    environment:
+      # Configuracion DB
+      - DB_HOST=host.docker.internal
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+    ports:
+      - ${BACK_PORT}:3000
+    volumes:
+      - ./backend/backend:/app
+      - ./backend/start.sh:/start.sh
+    links:
+      - redis
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   # frontend:
   #   container_name: frontend

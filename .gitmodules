@@ -1,3 +1,6 @@
 [submodule "database"]
 	path = database
 	url = https://github.com/lautarobarba/postgres-database-container
+[submodule "backend"]
+	path = backend
+	url = https://github.com/lautarobarba/nestjs-backend-container
