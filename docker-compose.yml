@@ -1,27 +1,27 @@
 version: "3.8"
 name: fullstack
 services:
-  # database:
-  #   container_name: database
-  #   image: database:1.0.0
-  #   build:
-  #     context: .
-  #     target: base
-  #     dockerfile: ./database/Dockerfile
-  #   env_file: .env
-  #   environment:
-  #     - TZ=America/Argentina/Buenos_Aires
-  #     - POSTGRES_USER=${DB_USER}
-  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
-  #     - POSTGRES_DB=${DB_NAME}
-  #   restart: always
-  #   ports:
-  #     - ${DB_PORT}:5432
-  #   volumes:
-  #     - ./database/database/data:/var/lib/postgresql/data
-  #     - ./database/backups:/backups
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
+  database:
+    container_name: database
+    image: database:1.0.0
+    build:
+      context: .
+      target: base
+      dockerfile: ./database/Dockerfile
+    env_file: .env
+    environment:
+      - TZ=America/Argentina/Buenos_Aires
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - ./database/database/data:/var/lib/postgresql/data
+      - ./database/backups:/backups
+    extra_hosts:
+      - host.docker.internal:host-gateway
 
   # redis:
   #   container_name: redis
@@ -58,27 +58,27 @@ services:
   #   extra_hosts:
   #     - host.docker.internal:host-gateway
 
-  frontend:
-    container_name: frontend
-    image: frontend:1.0.0
-    build:
-      context: .
-      target: base
-      dockerfile: ./frontend/Dockerfile
-    command: bash /start.sh
-    # depends_on:
-    #   - backend
-    restart: always
-    env_file: .env
-    environment:
-      - PORT=${FRONT_PORT}
-    ports:
-      - ${FRONT_PORT}:${FRONT_PORT}
-    volumes:
-      - ./frontend/frontend:/app
-      - ./frontend/start.sh:/start.sh
-    extra_hosts:
-      - host.docker.internal:host-gateway
+  # frontend:
+  #   container_name: frontend
+  #   image: frontend:1.0.0
+  #   build:
+  #     context: .
+  #     target: base
+  #     dockerfile: ./frontend/Dockerfile
+  #   command: bash /start.sh
+  #   # depends_on:
+  #   #   - backend
+  #   restart: always
+  #   env_file: .env
+  #   environment:
+  #     - PORT=${FRONT_PORT}
+  #   ports:
+  #     - ${FRONT_PORT}:${FRONT_PORT}
+  #   volumes:
+  #     - ./frontend/frontend:/app
+  #     - ./frontend/start.sh:/start.sh
+  #   extra_hosts:
+  #     - host.docker.internal:host-gateway
 
   # rproxy:
   #   container_name: rproxy
